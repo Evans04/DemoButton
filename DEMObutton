@@ -1,0 +1,55 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Evans {
+    private final JFrame frame;
+    private final JPanel panel;
+    private final DemoButton petDisplay;
+    private final JLabel imageLabel;
+
+    public Evans() {
+        frame = new JFrame("Pet Display App");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        panel = new JPanel(new BorderLayout());
+        frame.add(panel);
+
+        petDisplay = new DemoButton();
+
+        JPanel radioButtonPanel = new JPanel(new GridLayout(5, 1)); // Panel to hold radio buttons vertically
+
+        JRadioButton1 birdButton = new JRadioButton("Bird");
+        JRadioButton2 catButton = new JRadioButton("Cat");
+        JRadioButton3 dogButton = new JRadioButton("Dog");
+        JRadioButton4 rabbitButton = new JRadioButton("Rabbit");
+        JRadioButton5 pigButton = new JRadioButton("Pig");
+
+        petDisplay.add(birdButton);
+        petDisplay.add(catButton);
+        petDisplay.add(dogButton);
+        petDisplay.add(rabbitButton);
+        petDisplay.add(pigButton);
+
+        radioButtonPanel.add(birdButton);
+        radioButtonPanel.add(catButton);
+        radioButtonPanel.add(dogButton);
+        radioButtonPanel.add(rabbitButton);
+        radioButtonPanel.add(pigButton);
+
+        panel.add(radioButtonPanel, BorderLayout.WEST);
+
+        imageLabel = new JLabel();
+        panel.add(imageLabel, BorderLayout.CENTER);
+
+        ActionListener petSelectionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JRadioButton selectedButton = (JRadioButton) e.getSource();
+                if (selectedButton.isSelected()) {
+                    String selectedPet = selectedButton.getText();
+                    displayPetImage(selectedPet);
+                }
+            }
+        };
